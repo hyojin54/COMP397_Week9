@@ -4,32 +4,31 @@
     // Game Variables
     var canvas;
     var stage;
-    var helloLabel;
+    var welcomeLabel;
+    var startButton;
     function Start() {
         console.log("%c Start Function", "font-weight:bold; font-size:20px; color: red;");
         canvas = document.getElementsByTagName("canvas")[0];
         stage = new createjs.Stage(canvas);
+        stage.enableMouseOver(20); // enables mouseover events
         createjs.Ticker.framerate = 60; // sets framerate to 60fps
         createjs.Ticker.on("tick", Update);
         // This is where all the magic happens
         Main();
     }
+    // game loop
     function Update() {
         //helloLabel.rotation += 5;
         stage.update();
     }
     function Main() {
         console.log("%c Main Function", "font-style:italic; font-size:16px; color:blue;");
-        // this is the Label
-        helloLabel = new createjs.Text("Hello, World!", "60px Consolas", "#000000");
-        helloLabel.regX = helloLabel.getBounds().width * 0.5;
-        helloLabel.regY = helloLabel.getBounds().height * 0.5;
-        helloLabel.x = 320;
-        helloLabel.y = 240;
-        stage.addChild(helloLabel);
-        helloLabel.addEventListener("click", function () {
-            console.log("clicked");
-            helloLabel.text = "Clicked!";
+        welcomeLabel = new objects.Label("Welcome", "60px", "Consolas", "#000000", 320, 200, true);
+        stage.addChild(welcomeLabel);
+        startButton = new objects.Button("../../Assets/images/Startbutton.png", 320, 300, true);
+        stage.addChild(startButton);
+        startButton.on("click", function () {
+            welcomeLabel.text = "Clicked!";
         });
     }
     window.addEventListener("load", Start);
