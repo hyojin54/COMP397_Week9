@@ -6,6 +6,8 @@
     var stage;
     var welcomeLabel;
     var startButton;
+    function Init() {
+    }
     function Start() {
         console.log("%c Start Function", "font-weight:bold; font-size:20px; color: red;");
         canvas = document.getElementsByTagName("canvas")[0];

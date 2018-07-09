@@ -7,6 +7,10 @@
     let welcomeLabel: objects.Label;
     let startButton: objects.Button;
 
+    function Init():void {
+        
+    }
+
     function Start():void {
         console.log(`%c Start Function`,"font-weight:bold; font-size:20px; color: red;");
         canvas = document.getElementsByTagName("canvas")[0];
