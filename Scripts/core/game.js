@@ -6,10 +6,20 @@
     var stage;
     var welcomeLabel;
     var startButton;
+    var AssetManager;
+    var Manifest = [
+        { id: "startButton", src: "/Assets/images/startButton.png" }
+    ];
     function Init() {
+        console.log("%c Assets Loading...", "font-weight:bold; font-size:20px; color: green;");
+        AssetManager = new createjs.LoadQueue();
+        managers.Game.AssetManager = AssetManager;
+        AssetManager.installPlugin(createjs.Sound); // enables preloading of sound assets
+        AssetManager.on("complete", Start);
+        AssetManager.loadManifest(Manifest);
     }
     function Start() {
-        console.log("%c Start Function", "font-weight:bold; font-size:20px; color: red;");
+        console.log("%c App Starting...", "font-weight:bold; font-size:20px; color: red;");
         canvas = document.getElementsByTagName("canvas")[0];
         stage = new createjs.Stage(canvas);
         stage.enableMouseOver(20); // enables mouseover events
@@ -27,7 +37,8 @@
         console.log("%c Main Function", "font-style:italic; font-size:16px; color:blue;");
         welcomeLabel = new objects.Label("Welcome", "60px", "Consolas", "#000000", 320, 200, true);
         stage.addChild(welcomeLabel);
-        startButton = new objects.Button("../../Assets/images/Startbutton.png", 320, 300, true);
+        //startButton = new objects.Button("../../Assets/images/Startbutton.png", 320, 300, true);
+        startButton = new objects.Button("startButton", 320, 300, true);
         stage.addChild(startButton);
         startButton.on("click", function () {
             welcomeLabel.text = "Clicked!";
